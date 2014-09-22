@@ -1,0 +1,17 @@
+public class Driver {
+    public boolean mixStart(String str){
+	return str.startsWith("ix", 1);
+    }
+    public String makeOutWord(String out, String word){
+	return out.substring(0,2) + word + out.substring(2);
+    }
+    public String firstHalf(String str){
+	return str.substring(0, (str.length())/2);
+    }
+    System.out.println(mixStart("pixels"));
+    System.out.println(makeOutWord("<<>>", "Hey"));
+    System.out.println(firstHalf("Hello"));
+}
+ 
+
+  
