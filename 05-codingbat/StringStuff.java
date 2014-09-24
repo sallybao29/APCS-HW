@@ -13,4 +13,22 @@ public class StringStuff {
 	    return 21 - n;
 	}
     }
+    public int teaParty(int tea, int candy) {
+        if ((tea < 5) || (candy < 5)) {
+	    return 0;
+	}
+	else if ((tea >= (2* candy)) || (candy >= (2 * tea))) {
+	    return 2;
+	}
+	else {
+	    return 1;
+	}
+    }
+    public boolean lastDigit(int a, int b, int c) {
+	int d = a%10;
+	int e = b%10;
+	int f = c%10;
+	return (d == e || e == f || d == f);
+    }
+
 }
