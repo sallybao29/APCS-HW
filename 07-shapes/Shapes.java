@@ -30,6 +30,7 @@ public class Shapes {
 	}
 	return ans;
     }
+    //around 15 minutes
     public String tri2(int h){
 	String ans = "";
 	int num = 1;
