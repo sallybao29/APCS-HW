@@ -1,4 +1,4 @@
-public class Shapes {
++public class Shapes {
     public String box(int r, int c) {
 	String s = "";
 
@@ -51,4 +51,14 @@ public class Shapes {
 	}
 	return ans;
     }
+    public String tri3(int h){
+	String s = "";
+	int sp, st;
+	for(row = 1;row < h;row++){
+	    for(sp = h - row;sp > 0;sp--){
+		s += " ";
+	    }
+	    for(st = row;st ;st +=2 
+
+	    s += "\n";
 }
