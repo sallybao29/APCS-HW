@@ -1,0 +1,41 @@
+public class Strings{
+    //15 minutes
+    public String frame(int r, int c){
+	String s = "";
+	int i,row;
+	for(row = 0;row < r;row++){
+	    s += "*";
+	    for(i = 0;i < c - 2;i++){
+		if (row == 0 || row == r - 1){
+		    s += "*";
+		}
+		else{
+		    s += " ";
+		}
+	    }
+	    s += "*";
+	    s += "\n";
+	}
+	return s;
+    }
+    //6 minutes
+    public String stringSplosion(String str){
+	String s = "";
+	int i;
+	for(i = 0;i <= str.length();i++){
+	    s += str.substring(0,i);
+	}
+	return s;
+    }
+    //15 minutes
+    public String stringX(String str){
+	String s = "";
+	int i;
+	for(i = 0;i < str.length();i++){
+	    if (!(str.substring(i,i + 1).equals("x") && i > 0 && i < str.length() - 1)){
+		s += str.substring(i,i + 1);
+	    }
+	}
+	return s;
+    }
+}
