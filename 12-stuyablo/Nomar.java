@@ -8,9 +8,9 @@ public class Nomar extends Basechar{
     public Nomar(){
 		super();
 		name = "The Great Nomar";
-		level = super.getLv() + 5;
+		level = (Math.random(super.getLv())) + 1;
 		intimidation = 0.5;
-		HP = super.getHP() + 10;
+		HP = level * 2;
     }
     
     public Nomar(String name){
