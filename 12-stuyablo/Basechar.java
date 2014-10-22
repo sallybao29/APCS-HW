@@ -1,12 +1,6 @@
 import java.util.*;
 
-<<<<<<< HEAD
-	private int HP, Pwr, Atk, Def, MAtk, MDef, Stamina, Const, Lv, sight, range, accuracy;
-        private String name;
-	private Weapon wielded = new Weapon();
-	private Weapon quivered = new Weapon();
-	private Armor wearing = new Armor();
-=======
+
 public abstract class Basechar {
 
 	private int HP, PE, Atk, Def, MAtk, MDef, Stamina, Const, Lv, sight, range;
@@ -18,7 +12,6 @@ public abstract class Basechar {
 	private Weapon quivered;
 	private Armor wearing;
    
->>>>>>> 3eeed0296e3dabd6f0971a20c2e82ee5c2a3af7c
 
 	public Basechar(String charName, String wieldedID, String quiveredID, String wearingID) {
 		name = charName;
