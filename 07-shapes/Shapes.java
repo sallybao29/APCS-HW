@@ -1,4 +1,12 @@
 public class Shapes {
+    public String line(int a, String str){
+	String s = "";
+	int i;
+	for(i = 0;i < a;i++){
+	    s += str;
+	}
+	return s;
+    }
     public String box(int r, int c) {
 	String s = "";
 
@@ -16,89 +24,47 @@ public class Shapes {
     }
     //15 minutes
     public String tri1(int h){
-	String ans = "";
-	int num  = 1;
-	int count = num;
-	while (num <= h){
-	    count = num;
-	    while (count > 0){
-		ans = ans + "*";
-		count = count - 1;
-	    }
-	    ans = ans + "\n";
-	    num = num + 1;
-	}
-	return ans;
-    }
-    //around 15 minutes
-    public String tri2(int h){
-	String ans = "";
-	int num = 1;
-	int count = num;
-	while (num <= h){
-	    count = num;
-	    int space = h - count;
-	    while (count > 0){
-		while (space > 0){
-		    ans = ans + " ";
-		    space = space - 1;
-		}
-		ans = ans + "*";
-		count = count - 1;
-	    }
-	    ans = ans + "\n";
-	    num = num + 1;
-	}
-	return ans;
-    }
-    //10 minutes
-    public String tri3(int h){
 	String s = "";
-	int sp,st,row;
-	for(row = 1;row <= h;row++){
-	    for(sp = h - row;sp > 0;sp--){
-		s += " ";
-	    }
-	    for(st = (row * 2) - 1;st > 0;st--){
-		s += "*";
-	    }
+	int r;
+	for(r = 0;r < h;r++){
+	    s += line(r + 1, "*");
+	    s += line(h - r - 1, " ");
 	    s += "\n";
 	}
 	return s;
     }
-    //30 minutes. Can't get it working properly for even number inputs. 
-    public String diamond(int h){
+
+    //around 15 minutes
+    public String tri2(int h){
 	String s = "";
-	int sp,st;
-	int lim = (h / 2) + 1;
-	int row = 1;
-	if (h % 2 == 0){
-	    lim = h / 2;
-	}
-	while(row < lim){
-	    for(sp = h - row;sp > 0;sp--){
-		s += " ";
-	    }
-	    for(st = (2 * row) - 1;st > 0;st--){
-		s += "*";
-	    }
-	    row += 1;
+	int r;
+	for(r = 0;r < h;r++){
+	    s += line(h - r - 1, " ");
+	    s += line(r + 1, "*");
 	    s += "\n";
 	}
+	return s;
+    }
 
-	if (lim % 2 == 0){
-	    row += 1;
+    //10 minutes
+    public String tri3(int h){
+	String s = "";
+	int r;
+	for(r = 0;r < h;r++){
+	    s += line(h - r - 1, " ");
+	    s += line(r * 2 + 1, "*");
+	    s += "\n";
 	}
-
-	while(row > 0){
-	   
-	    for(sp = h - row;sp > 0;sp--){
-		s += " ";
-	    }
-	    for(st = (2 * row) -1;st > 0;st--){
-		s += "*";
-	    }
-	    row -= 1;
+	return s;
+    }
+    //30 minutes
+    public String diamond(int h){
+	h = h - (h / 2);
+	String s = tri3(h);
+	int r;
+	for(r = h - 2; r >= 0;r--){
+	    s += line(h - r - 1, " ");
+	    s += line(r * 2 + 1, "*");
 	    s += "\n";
 	}
 	return s;
@@ -107,14 +73,10 @@ public class Shapes {
     //8 minutes
     public String tri4(int h){
 	String s = "";
-	int sp,st,row;
-	for(row = 0;row < h;row++){
-	    for(sp = row;sp > 0;sp--){
-		s += " ";
-	    }
-	    for(st = h - row;st > 0;st--){
-		    s += "*";
-	    }
+	int r;
+	for(r = 0;r < h;r++){
+	    s += line(r, " ");
+	    s += line(h - r, "*");
 	    s += "\n";
 	}
 	return s;
