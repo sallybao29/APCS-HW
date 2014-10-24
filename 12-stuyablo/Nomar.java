@@ -2,20 +2,29 @@ import java.util.*;
 
 public class Nomar extends Basechar{
     private String name;
-    private int sight, HP, level; 
     private double intimidation;
 
     public Nomar(){
 		super();
 		name = "The Great Nomar";
-		level = (Math.random(super.getLv())) + 1;
 		intimidation = 0.5;
-		HP = level * 2;
     }
     
     public Nomar(String name){
     	super(name);
     	intimidation = 0.1;
+    }
+
+    public void setStats(Basechar other){
+	Random r = new Random();
+	int levelFactor = r.nextInt(5) - 3;
+	if (levelFactor <= 0){
+	    this.setLv(1);
+	}
+	else{
+	    this.setLv(levelFactor + other.getLv());
+	}
+	this.setHP(this.getLv() * 6);
     }
     
     public double getIntimidation(){
@@ -56,15 +65,20 @@ public class Nomar extends Basechar{
 	}
 
 	public void basicAttack(Basechar other) {
+	    System.out.println(this + " attacks you!");
+	    wait(2000);
 		if (this.toHit(1)) {
 			int damage = this.getAtk(false) - (other.getDef() / 2);
 			other.setHP(other.getHP() - damage);
-			System.out.println("The " + this.getName() + " landed a hit!");
-			System.out.println("It inflicted " + damage + " damage!!");
+			System.out.println(this + " landed a hit!");
+			wait(2000);
+			System.out.println(this + " inflicted " + damage + " damage!!");
+			wait(2000);
 		}
 
 		else {
-			System.out.println("It missed!!");
+			System.out.println(this + " missed!!");
+			wait(2000);
 		}
 	}
 	
@@ -83,19 +97,20 @@ public class Nomar extends Basechar{
 
 		else{
  	    	System.out.println(this + " tries to lecture you but you can't hear him over your blasting headphones");
+		wait(2000);
 		}
     }
     
     public void instaKill(Basechar other){
         Random chanceToHit = new Random();
         if (chanceToHit.nextDouble() < (this.getAccuracy() * 0.3)){
-        	System.out.println(getName() + " calls your parents");
-        	wait(1000);
+        	System.out.println(this + " calls your parents");
+        	wait(2000);
         	other.setHP(0);
         }
         else{
-        	System.out.println(getName() + " calls your parents but no one answers");
-        	wait(1000);
+        	System.out.println(this + " calls your parents but no one answers");
+        	wait(2000);
         }
     
     }
@@ -104,12 +119,14 @@ public class Nomar extends Basechar{
     	Random chanceToHit = new Random();
     	if (chanceToHit.nextDouble() < (this.getAccuracy())) {
     		if (other.getWielded().equals("Bare Hands")) {
-    			System.out.println(this.getName() + " uses confiscate");
-    			wait(1000);
+    			System.out.println(this + " uses confiscate");
+    			wait(2000);
     			System.out.println("...but you had nothing on you");
+			wait(2000);
     		}
     		else{
-    		        System.out.println(this.getName() + " confiscates your " + other.getWielded());
+    		        System.out.println(this + " confiscates your " + other.getWielded());
+			wait(2000);
     		        other.setWielded("Bare Hands");	
     		}
     		

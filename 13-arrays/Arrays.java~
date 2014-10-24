@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Arrays{
+    public int[] frontPiece(int[] nums) { 
+	int[]newArray;
+	int lim, arrayLen;
+	arrayLen = nums.length;
+	if (arrayLen < 2){
+	    lim = arrayLen;
+	} 
+	else{
+	    lim = 2;
+	}
+	newArray = new int[lim];
+	for(int i = 0;i < lim;i++){
+	    newArray[i] = nums[i];
+	}
+	return newArray;
+    }
+    public int sum13(int[] nums) {
+	int sum = 0;
+	int bad = 0;
+	for (int i = 0;i < nums.length;i++){
+	    sum += nums[i];
+	    if (nums[i] == 13 || (i > 0 && nums[i - 1] == 13)){
+		bad += nums[i];
+	    }
+	}
+	return sum - bad;
+    }
+
+    public static String printArrays(int[] nums){
+	String s = "[";
+	for(int i = 0;i < nums.length - 1;i++){
+	    s += nums[i] + ",";
+	}
+	s += nums[nums.length - 1] + "]";
+	return s;
+    }
+
+}
