@@ -33,6 +33,8 @@ public class  Arraystuff {
 	}
 	return s;}
 
+    /*------------------- Homework -------------------*/
+
     public int find(int n){
 	for(int i = 0;i < a.length;i++){
 	    if (a[i] == n){
@@ -51,14 +53,111 @@ public class  Arraystuff {
 	}
 	return largest;
     }
+
+    //14b
+ 
+    public int freq(int i){
+	int target = a[i];
+	int counter = 0;
+	for(int k = 0;k < a.length;k++){
+	    if (target == a[i]){
+		counter++;
+	    }
+	}
+	return counter;
+    }
+
+    public static int sum67(int[] nums){
+	int sum = 0;
+	int i = 0;
+	while (i < nums.length){
+	    if (nums[i] == 6){
+		i = nums.find(7) + 1;
+	    }
+	    sum += nums[i];
+	}
+	return sum;
+    }
+
+    public static boolean more14(int[] nums) {
+	int a = 0;
+	int b = 0;
+	for (int i = 0;i < nums.length;i++){
+	    if (nums[i] == 1){
+		a++;
+	    }
+	    if (nums[i] == 4){
+		b ++;
+	    }
+	}
+	return a > b;
+    }
+    //in progress
+    public static int[] tenRun(int[] nums){
+	int mult = 0;
+	int i = 0;
+
+    }
+
+    public static boolean tripleUp(int[] nums){
+	int i = 0;
+	int count = 0;
+	int temp = 0;
+	while (i < nums.length){
+	    count = 0;
+	    temp = i;
+	    while (count < 3){
+		count++;
+		if (temp + 1 < nums.length && nums[temp + 1] - nums[temp] == 1){
+		    temp++;
+		}
+		else{
+		    break;
+		}   
+	    }
+	    if (count == 3){
+		return true;
+	    }
+	    else {
+		i++;
+	    }   
+	}
+	return false;
+    }
+    //in progress
+    public boolean canBalance(int[] nums){
+        int start = 0;
+        int fin = nums.length - 1;
+	int beg = nums[start];
+	int end = nums[fin];
+        
+	while (start != fin){
+	    if (beg == end){
+		return true;
+	    }
+	    if (beg > end && fin - 1 > 0){
+                fin -= 1;
+		end += nums[fin];
+	    }
+            else {
+                start += 1;
+                beg += nums[start];
+            }
+	}
+	return false;
+    }
+
     
     /*--------------------- Main --------------------*/ 
 
     public static void main(String[] args) {
 	Arraystuff as = new Arraystuff();
+	int[] intArray = {1,2,2,6,99,99,7};
+	/*
 	System.out.println(as);
 	System.out.println(as.find(100));
 	System.out.println(as.maxVal());
+	*/
 	
     }
     
