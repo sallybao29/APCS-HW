@@ -31,7 +31,8 @@ public class  Arraystuff {
 	for (int i = 0; i < a.length; i++) {
 	    s = s + a[i]+", ";
 	}
-	return s;}
+	return s;
+    }
 
     /*------------------- Homework -------------------*/
 
@@ -67,19 +68,29 @@ public class  Arraystuff {
 	return counter;
     }
 
-    public static int sum67(int[] nums){
+  
+    public int sum67(int[] nums){
 	int sum = 0;
 	int i = 0;
 	while (i < nums.length){
 	    if (nums[i] == 6){
-		i = nums.find(7) + 1;
+		while (nums[i] != 7){
+		    i++;
+                }
+		if (i + 1 >= nums.length){
+		    break;
+		}
+		else{
+		    i++;
+		}
 	    }
 	    sum += nums[i];
+            i++;    
 	}
 	return sum;
     }
 
-    public static boolean more14(int[] nums) {
+    public boolean more14(int[] nums) {
 	int a = 0;
 	int b = 0;
 	for (int i = 0;i < nums.length;i++){
@@ -92,36 +103,36 @@ public class  Arraystuff {
 	}
 	return a > b;
     }
-    //in progress
-    public int[] tenRun(int[] nums) {
+   
+    public int[] tenRun() {
 	int mult = 0;
 	int i = 0;
-	while (i < nums.length){
-	    if (nums[i] % 10 == 0){
-		mult = nums[i];
+	while (i < a.length){
+	    if (a[i] % 10 == 0){
+		mult = a[i];
+                i++;
+                while (i < a.length && a[i] % 10 != 0){
+		    a[i] = mult;
+		    i++;
+                }
 	    }
 	    else{
-		i++;
-	    }
-	    while (nums[i + 1] % 10 != 0){
-		nums[i] = mult;
-		i++;
-	    }
+                i++;
+	    } 
 	}
-	return nums;
+	return a;
     }
 
-
-    public static boolean tripleUp(int[] nums){
+    public boolean tripleUp(){
 	int i = 0;
 	int count = 0;
 	int temp = 0;
-	while (i < nums.length){
+	while (i < a.length){
 	    count = 0;
 	    temp = i;
 	    while (count < 3){
 		count++;
-		if (temp + 1 < nums.length && nums[temp + 1] - nums[temp] == 1){
+		if (temp + 1 < a.length && a[temp + 1] - a[temp] == 1){
 		    temp++;
 		}
 		else{
@@ -137,23 +148,31 @@ public class  Arraystuff {
 	}
 	return false;
     }
-    //in progress
+   
     public boolean canBalance(int[] nums){
         int start = 0;
         int fin = nums.length - 1;
 	int beg = nums[start];
 	int end = nums[fin];
         
-	while (start != fin){
+	while (start < fin){
 	    if (beg == end){
-		return true;
+		if (fin - start == 1){
+		    return true;
+		} 
+		else{
+		    start++;
+		    beg += nums[start];
+		    fin--;
+		    end += nums[fin];
+		}
 	    }
-	    if (beg > end && fin - 1 > 0){
-                fin -= 1;
+	    if (beg > end){
+                fin--;
 		end += nums[fin];
 	    }
             else {
-                start += 1;
+                start++;
                 beg += nums[start];
             }
 	}
@@ -178,19 +197,25 @@ public class  Arraystuff {
 	return intArray;
     }
 
-
     
     /*--------------------- Main --------------------*/ 
 
     public static void main(String[] args) {
 	Arraystuff as = new Arraystuff();
-	int[] intArray = {1,2,2,6,99,99,7};
+	int[] x = {1,2,2,6,99,99,7};
+	int[] y = {1,2,1,4,16,0,4,4,1,1}; 
 	/*
 	System.out.println(as);
 	System.out.println(as.find(100));
 	System.out.println(as.maxVal());
 	*/
 	
+	System.out.println(as.sum67(x));
+	System.out.println(as.more14(y));
+	System.out.println(as.tenRun());
+	System.out.println(as.tripleUp());
+	System.out.println(as.canBalance(y));
+	System.out.println(as.seriesUp(5));
     }
     
 }
