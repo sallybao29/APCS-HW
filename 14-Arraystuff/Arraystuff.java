@@ -93,11 +93,24 @@ public class  Arraystuff {
 	return a > b;
     }
     //in progress
-    public static int[] tenRun(int[] nums){
+    public int[] tenRun(int[] nums) {
 	int mult = 0;
 	int i = 0;
-
+	while (i < nums.length){
+	    if (nums[i] % 10 == 0){
+		mult = nums[i];
+	    }
+	    else{
+		i++;
+	    }
+	    while (nums[i + 1] % 10 != 0){
+		nums[i] = mult;
+		i++;
+	    }
+	}
+	return nums;
     }
+
 
     public static boolean tripleUp(int[] nums){
 	int i = 0;
@@ -146,6 +159,25 @@ public class  Arraystuff {
 	}
 	return false;
     }
+
+    public int[] seriesUp(int n) {
+	int len = n * (n + 1) / 2;
+	int[] intArray = new int[len];
+	int count = 1;
+	int a = 1;
+	int i = 0;
+	while (count < n + 2){
+	    a = 1;
+	    while (a < count){
+		intArray[i] = a;
+		a++;
+		i++;
+	    }
+	    count++;
+	}
+	return intArray;
+    }
+
 
     
     /*--------------------- Main --------------------*/ 
