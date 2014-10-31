@@ -69,23 +69,18 @@ public class  Arraystuff {
     }
 
   
+    
     public int sum67(int[] nums){
 	int sum = 0;
-	int i = 0;
-	while (i < nums.length){
+	for (int i = 0;i < nums.length;i++){
 	    if (nums[i] == 6){
 		while (nums[i] != 7){
 		    i++;
-                }
-		if (i + 1 >= nums.length){
-		    break;
-		}
-		else{
-		    i++;
-		}
+                }     	
 	    }
-	    sum += nums[i];
-            i++;    
+            else{
+		sum += nums[i]; 
+            } 
 	}
 	return sum;
     }
@@ -98,7 +93,7 @@ public class  Arraystuff {
 		a++;
 	    }
 	    if (nums[i] == 4){
-		b ++;
+		b++;
 	    }
 	}
 	return a > b;
@@ -196,26 +191,49 @@ public class  Arraystuff {
 	}
 	return intArray;
     }
+    //Partially functioning. Don't have a way to find the largest mirror section
+    public int maxMirror(int[] nums){
+	int pos = 0;
+	int mirr = nums.length - 1;
+	int count = 0;
+	for (int i = 0;i < nums.length / 2;i++){
+	    if (freq(i) > 1){
+		pos = i;
+		while (nums[mirr] != nums[pos]){
+		    mirr--;
+		}
+		while (mirr > 0 && pos < nums.length && nums[pos] == nums[mirr]){
+		    if (mirr == pos){
+			count++;
+		    }
+		    count++;
+		    pos++;
+		    mirr--;
+		}    
+		break;
+	    }
+	}
+	return count;
+    }
 
     
     /*--------------------- Main --------------------*/ 
 
     public static void main(String[] args) {
 	Arraystuff as = new Arraystuff();
-	int[] x = {1,2,2,6,99,99,7};
-	int[] y = {1,2,1,4,16,0,4,4,1,1}; 
+	int[] x = {1, 2, 3, 8, 9, 3, 2, 1};
+	int[] y = {1, 2, 1, 4};
+	int[] z = {7, 1, 2, 9, 7, 2, 1};
 	/*
 	System.out.println(as);
 	System.out.println(as.find(100));
 	System.out.println(as.maxVal());
 	*/
-	
-	System.out.println(as.sum67(x));
-	System.out.println(as.more14(y));
-	System.out.println(as.tenRun());
-	System.out.println(as.tripleUp());
-	System.out.println(as.canBalance(y));
-	System.out.println(as.seriesUp(5));
+	System.out.println(as.maxMirror(x));
+	System.out.println(as.maxMirror(y));
+	System.out.println(as.maxMirror(z));
+
+
     }
     
 }
