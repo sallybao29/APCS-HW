@@ -45,11 +45,11 @@ public class  Arraystuff {
 	return -1;
     }
 
-    public int maxVal(){
-	int largest = 0;
-	for(int i = 0;i < a.length;i++){
-	    if (largest < a[i]){
-		largest = a[i];
+    public int maxVal(int[] nums){
+	int largest = nums[0];
+	for(int i = 0;i < nums.length;i++){
+	    if (largest < nums[i]){
+		largest = nums[i];
 	    }
 	}
 	return largest;
@@ -191,11 +191,12 @@ public class  Arraystuff {
 	}
 	return intArray;
     }
-    //Partially functioning. Don't have a way to find the largest mirror section
+  
     public int maxMirror(int[] nums){
 	int pos = 0;
 	int mirr = nums.length - 1;
 	int count = 0;
+	int[] lens = new int[nums.length];
 	for (int i = 0;i < nums.length / 2;i++){
 	    if (freq(i) > 1){
 		pos = i;
@@ -210,10 +211,13 @@ public class  Arraystuff {
 		    pos++;
 		    mirr--;
 		}    
-		break;
+	        lens[i] = count;
+		count = 0;
+		mirr = nums.length - 1;
 	    }
 	}
-	return count;
+	int max = maxVal(lens);
+	return max;
     }
 
     
@@ -224,11 +228,7 @@ public class  Arraystuff {
 	int[] x = {1, 2, 3, 8, 9, 3, 2, 1};
 	int[] y = {1, 2, 1, 4};
 	int[] z = {7, 1, 2, 9, 7, 2, 1};
-	/*
-	System.out.println(as);
-	System.out.println(as.find(100));
-	System.out.println(as.maxVal());
-	*/
+
 	System.out.println(as.maxMirror(x));
 	System.out.println(as.maxMirror(y));
 	System.out.println(as.maxMirror(z));
