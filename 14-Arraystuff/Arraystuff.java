@@ -57,11 +57,10 @@ public class  Arraystuff {
 
     //14b
  
-    public int freq(int i){
-	int target = a[i];
+    public int freq(int n){
 	int counter = 0;
 	for(int k = 0;k < a.length;k++){
-	    if (target == a[i]){
+	    if (a[k] == n){
 		counter++;
 	    }
 	}
@@ -220,6 +219,16 @@ public class  Arraystuff {
 	return max;
     }
 
+    public int mode(){
+	int m = a[0];
+	for(int i = 0;i < a.length;i++){
+	    if (freq(m) < freq(a[i])){
+		m = a[i];
+	    }
+	}
+	return m;
+    }
+
     
     /*--------------------- Main --------------------*/ 
 
@@ -228,10 +237,13 @@ public class  Arraystuff {
 	int[] x = {1, 2, 3, 8, 9, 3, 2, 1};
 	int[] y = {1, 2, 1, 4};
 	int[] z = {7, 1, 2, 9, 7, 2, 1};
-
+	/*
 	System.out.println(as.maxMirror(x));
 	System.out.println(as.maxMirror(y));
 	System.out.println(as.maxMirror(z));
+	*/
+	System.out.println(as);
+	System.out.println(as.mode());
 
 
     }
