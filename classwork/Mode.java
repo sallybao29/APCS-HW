@@ -84,7 +84,6 @@ public class Mode {
 	}
 	return maxSoFar;
     }
-
     public int fastMode(){
 	int[] bucket = new int[maxVal() + 1];
 	for (int i = 0;i < a.length;i++){
