@@ -1,19 +1,30 @@
+import java.lang.*;
+
 public class Sarray {
     int[] data;
     int last;
+    int room = 100;
 
     public Sarray() {
 	data = new int[100];
-	last = 0;
-        // set up the initial instance variables
+	last = -1;
     }
 
     public int[] grow(int[] nums){
-	int[] newArray = new int[nums.length + 1];
+	int[] newArray = new int[nums.length + room];
 	for (int i = 0;i < nums.length;i++){
 	    newArray[i] = nums[i];
 	}
 	return newArray;
+    }
+
+    public boolean indexInRange(int index){
+	if (index > last || index < 0){
+	    return false;
+	}
+	else {
+	    return true;
+	}
     }
 
     public String toString(){
@@ -25,9 +36,6 @@ public class Sarray {
     }
 
     public boolean add(int i){
-        // adds an item to the end of the list, grow if needed
-        // returns true
-
 	int[] newArray;
 	if (last == data.length - 1){
 	    newArray = grow(data);
@@ -42,9 +50,9 @@ public class Sarray {
     }
 
     public void  add(int index, int i){
-        // adds item i  at index, shifting everything down as needed.
-        // also grows as needed 
-
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int[] newArray;
 	if (last == data.length - 1){
 	    newArray = grow(data);
@@ -57,12 +65,10 @@ public class Sarray {
 	}
 	last++;
 	newArray[index] = i;
-	data = newArray;
-
+	data = newArray;	
     }
 
     public int size() {
-        // returns the number of items in the list (not the array size)
 	int count = 0;
 	for (int i = 0;i < last + 1;i++){
 	    count++;
@@ -71,25 +77,25 @@ public class Sarray {
     }
 
     public int get(int index) {
-
-	return data[index];
-
-        // returns the item at location index of the lsit
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
+	return data[index];      
     }
 
     public int set(int index, int i){
-        // sets the item at location index to value i
-        // returns the old value. 
-
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int old = data[index];
 	data[index] = i;
-	return old;
-      
+	return old;   
     }
 
     public int remove(int index){
-        // removes the item at index i
-        // returns the old value
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int old = data[index];
 	for (int i = index;i < last;i++){
 	    data[i] = data[i + 1];
