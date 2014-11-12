@@ -1,3 +1,5 @@
+import java.lang.*;
+
 public class Sarray {
     int[] data;
     int last;
@@ -48,6 +50,9 @@ public class Sarray {
     }
 
     public void  add(int index, int i){
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int[] newArray;
 	if (last == data.length - 1){
 	    newArray = grow(data);
@@ -72,16 +77,25 @@ public class Sarray {
     }
 
     public int get(int index) {
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	return data[index];      
     }
 
     public int set(int index, int i){
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int old = data[index];
 	data[index] = i;
 	return old;   
     }
 
     public int remove(int index){
+	if (indexInRange(index) == false){
+	    throw new IndexOutOfBoundsException();
+	}
 	int old = data[index];
 	for (int i = index;i < last;i++){
 	    data[i] = data[i + 1];
