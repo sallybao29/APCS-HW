@@ -28,15 +28,16 @@ public class ArrayLists{
 	}
     }
 
-    public int[] randomize(int[] nums){
-	r = new Random();
+    public static int[] randomize(int[] nums){
+	Random r = new Random();
+	ArrayList<Integer> n = new ArrayList<Integer>();
+	for (int i = 0;i < nums.length;i++){
+	    n.add(i);
+	}
 	int[] newArray = new int[nums.length];
 	for (int i = 0;i < nums.length;i++){
-	    int index = r.nextInt(nums.length);
-	    if (newArray[index] == 0){
-		newArray[index] = nums[i];
-	    }
-	  
+	    int index = r.nextInt(n.size());
+	   newArray[i] =  n.remove(index);	  
 	}
 	return newArray;
     }
@@ -62,7 +63,7 @@ public class ArrayLists{
 
 	System.out.println(ai);
 	System.out.println(ai.printArray(n));
-	System.out.println(ai.printArray(ai.randomize(n)));
+	System.out.println(ai.printArray(randomize(n)));
     }
 
         
