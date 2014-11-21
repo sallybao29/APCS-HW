@@ -60,6 +60,23 @@ public class WordSearch {
 	return true;
     }
 
+    public boolean overlapD(String a, int row, int col){
+	int i = 0,
+	    r = row,
+	    c = col;
+	while (i < a.length()){
+	    if ((a.charAt(i) == board[r][c])||
+		(board[r][c] == '.')){
+		i++;
+		r++;
+		c++;
+	    }
+	    else {return false;}
+	}
+	return true;
+
+    }
+
  
     public void addWordH(String w, int row, int col){
 	int c = col;
@@ -98,17 +115,34 @@ public class WordSearch {
 	String s = reverse(w);
 	addWordV(s, row, col);
     }
+
+    public void addWordD(String w, int row, int col){
+	int r = row;
+	int c = col;
+	if ((col >= 0 && col + w.length() <= board[0].length)&&
+	    (row >= 0 && row + w.length() <= board.length)){
+	    if (overlapD(w, row, col) == true){
+		for (int i = 0; i < w.length();i++){
+		    board[r][c] = w.charAt(i);
+		    r++;
+		    c++;
+		}
+	    }
+	}
+
+    }
 		
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
-	System.out.println(w);
-	w.addWordV("hello",3,15); // should work
-	w.addWordV("look",4,15); // test illegal overlap
-       	w.addWordV("look",6,15); // test legal overlap       
-	w.addWordV("look",-3,20); // test illegal row      
-	w.addWordV("look",3,55); // test illegal col
-	w.addWordVR("hello",5,10); // test reverse direction
-	w.addWordV("pool",3,10); // test legal overlap in reverse direction
-	System.out.println(w);
+	   	System.out.println(w);
+	w.addWordD("hello",3,15); // should work
+       	w.addWordD("look",4,15); // test illegal overlap
+		w.addWordD("look",6,15); // test legal overlap       
+	w.addWordD("look",-3,20); // test illegal row      
+	w.addWordD("look",3,55); // test illegal col
+	// 	w.addWordDR("hello",5,10); // test reverse direction
+		w.addWordD("pool",3,10); // test legal overlap in reverse direction
+		System.out.println(w);
+       
     }
 }
