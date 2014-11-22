@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class WordSearch {
     private char[][] board;
 
@@ -32,96 +34,77 @@ public class WordSearch {
 	return s;
     }
 
-    public boolean overlapH(String a, int row, int col){
-	int i = 0;
-	int c = col;
-	while (i < a.length()){
-	    if ((a.charAt(i) == board[row][c])||
-		(board[row][c] == '.')){
-		i++;
-		c++;
-	    }
-	    else {return false;}
-	}
-	return true;
-    }
 
-    public boolean overlapV(String a, int row, int col){
-	int i = 0;
-	int r = row;
-	while (i < a.length()){
-	    if ((a.charAt(i) == board[r][col])||
-		(board[r][col] == '.')){
-		i++;
-		r++;
-	    }
-	    else {return false;}
-	}
-	return true;
-    }
-
-    public boolean overlapD(String a, int row, int col){
+    public boolean overlap(String a, char type, int row, int col){
 	int i = 0,
 	    r = row,
 	    c = col;
 	while (i < a.length()){
 	    if ((a.charAt(i) == board[r][c])||
 		(board[r][c] == '.')){
+		if (type == 'h' || type == 'r'){
+		    c++;
+		}
+		if (type != 'h'){
+		    r++;
+		}
+		if (type == 'l'){
+		    c--;
+		}
 		i++;
-		r++;
-		c++;
 	    }
 	    else {return false;}
 	}
 	return true;
-
     }
-
  
-    public void addWordH(String w, int row, int col){
+    public void addWordH(String w, int row, int col, boolean right){
 	int c = col;
-	if ((w.length() + col <= board[0].length)&&
+	if (right == false){
+	    w = reverse(w);
+	}
+	if ((w.length() + col < board[0].length)&&
 	    (col >= 0)&&
 	    (row >= 0 && row < board.length)){
-	    if (overlapH(w, row, col) == true){
+	    if (overlap(w, 'h', row, col) == true){
 		for (int i=0; i < w.length();i++){
 		    board[row][c] = w.charAt(i);
 		    c++;
 		}
 	    }
 	}
+	else{throw new IllegalArgumentException();}
     }
 
-    public void addWordHR(String w, int row, int col){
-	String s = reverse(w);
-	addWordH(s, row, col);
-    }
-
-    public void addWordV(String w, int row, int col){
+    public void addWordV(String w, int row, int col, boolean down){
 	int r = row;
-	if ((w.length() + row <= board.length)&&
+	if (down == false){
+	    w = reverse(w);
+	}
+	if ((w.length() + row < board.length)&&
 	    (row >= 0)&&
 	    (col >= 0 && col < board[0].length)){
-	    if (overlapV(w, row, col) == true){
+	    if (overlap(w, 'v', row, col) == true){
 		for (int i = 0; i < w.length();i++){
 		    board[r][col] = w.charAt(i);
 		    r++;
 		}
 	    }
 	}
+	else {
+	    throw new IllegalArgumentException();
+	}
     }
 
-    public void addWordVR(String w, int row, int col){
-	String s = reverse(w);
-	addWordV(s, row, col);
-    }
-
-    public void addWordD(String w, int row, int col){
+    public void addWordD1(String w, int row, int col, boolean down){
 	int r = row;
 	int c = col;
-	if ((col >= 0 && col + w.length() <= board[0].length)&&
-	    (row >= 0 && row + w.length() <= board.length)){
-	    if (overlapD(w, row, col) == true){
+	if (down == false){
+	    w = reverse(w);
+	}
+	if ((col >= 0 && col + w.length() < board[0].length)&&
+	    (row >= 0 && row + w.length() < board.length)){
+	    if (overlap(w, 'r',  row, col) == true){
 		for (int i = 0; i < w.length();i++){
 		    board[r][c] = w.charAt(i);
 		    r++;
@@ -129,20 +112,61 @@ public class WordSearch {
 		}
 	    }
 	}
-
+	else {
+	    throw new IllegalArgumentException();
+	}
     }
+
+    public void addWordD2(String w, int row, int col, boolean down){
+	int r = row;
+	int c = col;
+	if (down == false){
+	    w = reverse(w);
+	}
+	if ((col < board[0].length &&  col - w.length() >= 0)&&
+	    (row >= 0 && row + w.length() < board.length)){
+	    if (overlap(w, 'l',  row, col) == true){
+		for (int i = 0; i < w.length();i++){
+		    board[r][c] = w.charAt(i);
+		    r++;
+		    c--;
+		}
+	    }
+	}
+	else {
+	    throw new IllegalArgumentException();
+	}
+    }
+
+    public boolean addWord(String w){
+	char[][] old = board;
+	Random r =  new Random();
+	int x = r.nextInt(board[0].length),
+	    y = r.nextInt(board.length),
+	    method = r.nextInt(8);
+	try{
+	    switch(method){
+	    case 0: addWordV(w, y, x, true); break;
+	    case 1: addWordV(w, y, x, false); break;
+	    case 2: addWordH(w, y, x, true); break;
+	    case 3: addWordH(w, y, x, false); break;
+	    case 4: addWordD1(w, y, x, true); break;
+	    case 5: addWordD1(w, y, x, false); break;
+	    case 6: addWordD2(w, y, x, true); break;
+	    case 7: addWordD2(w, y, x, false); break;
+	    }
+	} catch(IllegalArgumentException e){
+	    return false;
+	}
+	return true;  
+    }
+
 		
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
-	   	System.out.println(w);
-	w.addWordD("hello",3,15); // should work
-       	w.addWordD("look",4,15); // test illegal overlap
-		w.addWordD("look",6,15); // test legal overlap       
-	w.addWordD("look",-3,20); // test illegal row      
-	w.addWordD("look",3,55); // test illegal col
-	// 	w.addWordDR("hello",5,10); // test reverse direction
-		w.addWordD("pool",3,10); // test legal overlap in reverse direction
-		System.out.println(w);
+	System.out.println(w);
+	w.addWord("elephants");
+       	System.out.println(w);
        
     }
 }
