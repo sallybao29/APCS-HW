@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.util.*;
+import java.io.*;
 
 public class WordSearch {
     private char[][] board;
@@ -161,11 +162,25 @@ public class WordSearch {
 	return true;  
     }
 
+    public void makePuzzle(String f){
+	Scanner sc = null;
+	try {
+	    sc =new Scanner(new File(f));
+	} catch (Exception e) {
+	    System.out.println("File not found");
+	    System.exit(0);
+	}
+	while (sc.hasNext()){
+	    String s = sc.next();
+	     while (addWord(s) == false){
+		 //something
+	    }
+	}
+    }
 		
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
-	System.out.println(w);
-	w.addWord("elephants");
+	w.makePuzzle("word.txt");
        	System.out.println(w);
        
     }
