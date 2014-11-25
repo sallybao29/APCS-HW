@@ -4,6 +4,7 @@ import java.io.*;
 public class WordSearch {
     private char[][] board;
     private Random r = new Random();
+    private ArrayList<String> wordList, words;
 
     public WordSearch(int r, int c){
 	board = new char[r][c];
@@ -12,9 +13,23 @@ public class WordSearch {
 		board[i][j]='.';
 	    }
 	}
+	Scanner sc = null;
+	try {
+	    sc =new Scanner(new File("word.txt"));
+	} catch (Exception e) {
+	    System.out.println("File not found");
+	    System.exit(0);
+	}
+	wordList = new ArrayList<String>();
+	while (sc.hasNext()){
+	    wordList.add(sc.next());
+	}
+
     }
+
+
     public WordSearch() {
-	this(20,20);
+	this(20,40);
     }
  
     public String toString(){
@@ -161,19 +176,17 @@ public class WordSearch {
 	return true;  
     }
 
-    public void makePuzzle(String f){
-	Scanner sc = null;
-	try {
-	    sc =new Scanner(new File(f));
-	} catch (Exception e) {
-	    System.out.println("File not found");
-	    System.exit(0);
+    public void makePuzzle(int numwords){
+	words = new ArrayList<String>();
+	int i = 0;
+	while (i < numwords){
+	    int wordIndex = r.nextInt(wordList.size());
+	    if (addWord(wordList.get(wordIndex))){
+		words.add(wordList.remove(wordIndex));
+		i++;
+	    }
 	}
-	while (sc.hasNext()){
-	    String s = sc.next();
-	     while (addWord(s) == false){ }
-	}
-	int row = 0,
+	/*	int row = 0,
 	    col = 0;
 	while (row < board.length){
 	    col = 0;
@@ -184,13 +197,18 @@ public class WordSearch {
 		col++;
 	    }
 	    row++;
-	}
+	    }*/
+    }
+
+    public String getWords(){
+	return "" + words;
     }
 		
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
-	w.makePuzzle("word.txt");
+	w.makePuzzle(10);
        	System.out.println(w);
+	System.out.println(w.getWords());
        
     }
 }
