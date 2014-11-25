@@ -3,6 +3,7 @@ import java.io.*;
 
 public class WordSearch {
     private char[][] board;
+    private Random r = new Random();
 
     public WordSearch(int r, int c){
 	board = new char[r][c];
@@ -13,7 +14,7 @@ public class WordSearch {
 	}
     }
     public WordSearch() {
-	this(20,40);
+	this(20,20);
     }
  
     public String toString(){
@@ -140,8 +141,6 @@ public class WordSearch {
     }
 
     public boolean addWord(String w){
-	char[][] old = board;
-	Random r =  new Random();
 	int x = r.nextInt(board[0].length),
 	    y = r.nextInt(board.length),
 	    method = r.nextInt(8);
@@ -172,9 +171,19 @@ public class WordSearch {
 	}
 	while (sc.hasNext()){
 	    String s = sc.next();
-	     while (addWord(s) == false){
-		 //something
+	     while (addWord(s) == false){ }
+	}
+	int row = 0,
+	    col = 0;
+	while (row < board.length){
+	    col = 0;
+	    while (col < board[row].length){
+		if (board[row][col] == '.'){
+		    board[row][col] = (char)(r.nextInt(26) + 97);
+		}
+		col++;
 	    }
+	    row++;
 	}
     }
 		
