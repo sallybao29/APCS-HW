@@ -44,7 +44,7 @@ public class Sarray {
 	return true;
     }
 
-    public void  add(int index, String s){
+    private void  add(int index, String s){
 	if (indexInRange(index) == false){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -98,6 +98,15 @@ public class Sarray {
 	data[last] = null;
 	last--;
 	return old;
+    }
+
+    public static void main(String[] args){
+	Sarray s = new Sarray();
+	System.out.println(s);
+	s.add("hello");
+	s.add("potatoes");
+	System.out.println(s);
+
     }
 
 }
