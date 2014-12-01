@@ -1,12 +1,16 @@
 import java.lang.*;
 
 public class OrderedSuperArray extends Sarray{
-    private String[] data;
-    private int last;
-    private int room = 100;
+    String[] data;
+    int last;
+    int room = 100;
 
     public OrderedSuperArray(){
 	super();
+    }
+
+    public OrderedSuperArray(int size, String s){
+	super(size, s);
     }
 
     public String[] grow(){
@@ -23,19 +27,20 @@ public class OrderedSuperArray extends Sarray{
 	    newArray = new String[data.length];
 	}
 	int j = 0;
+    
 	for (int i = 0;i < last;i++){
 	    if (s.compareTo(data[i]) <= 0){
 		newArray[j] = s;
 		j = i + 1;
 	    }
 	    newArray[j] = data[i];
-	}
+	}	
 	data = newArray;
 	last++;
 	return true;
     }
 
-    public String small(){
+    public int small(){
 	String smallest = data[0];
 	int i;
 	for (i = 0;i < last;i++){
@@ -43,19 +48,18 @@ public class OrderedSuperArray extends Sarray{
 		smallest = data[i];
 	    }
 	}
-	data[i] = null;
-	return smallest;
+	return i;
     }
 
     public void sort(){
 	String[] m = new String[data.length];
 	int i = 0;
         while (data != null){
-	    m[i] = small();
+	    m[i] = data[small()];
+	    data[small()] = null;
 	    i++;
 	}
 	data = m;
-
     }
 
     public String set(int index, String s){
@@ -65,14 +69,14 @@ public class OrderedSuperArray extends Sarray{
 	return old;   
     }
 
-  
-
     public static void main(String[]args){
-	OrderedSuperArray a = new OrderedSuperArray();
+	OrderedSuperArray a = new OrderedSuperArray(10, "computer");
 	System.out.println(a);
-	//a.add("hello");
-	//	a.add("chicken");
-	//a.add("potatoe");
+	System.out.println(a.last);
+	System.out.println(a.size());
+	a.add("hello");
+	a.add("chicken");
+	a.add("potatoe");
 	a.set(0,"hello");
 	a.set(5,"cows:");
 	System.out.println(a);

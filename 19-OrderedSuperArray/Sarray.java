@@ -10,6 +10,15 @@ public class Sarray {
 	last = -1;
     }
 
+    public Sarray(int size, String s){
+	data = new String[size];
+	last = -1;
+	for(int i = 0;i < size;i++){
+	    data[i] = s;
+	    last++;
+	}
+    }
+
     public String[] grow(String[] nums){
 	String[] newArray = new String[nums.length + room];
 	for (int i = 0;i < nums.length;i++){
@@ -102,10 +111,13 @@ public class Sarray {
 
     public static void main(String[] args){
 	Sarray s = new Sarray();
+	Sarray m = new Sarray(5, "hello");
+	System.out.println(m);
 	System.out.println(s);
 	s.add("hello");
 	s.add("potatoes");
 	System.out.println(s);
+       
 
     }
 
