@@ -1,9 +1,9 @@
 import java.lang.*;
 
 public class Sarray {
-    String[] data;
-    int last;
-    int room = 100;
+    private String[] data;
+    private int last;
+    private int room = 100;
 
     public Sarray() {
 	data = new String[100];
@@ -17,6 +17,14 @@ public class Sarray {
 	    data[i] = s;
 	    last++;
 	}
+    }
+
+    public String[] getData(){
+	return data;
+    } 
+
+    public int getLast(){
+	return last;
     }
 
     public String[] grow(String[] nums){
@@ -53,7 +61,7 @@ public class Sarray {
 	return true;
     }
 
-    private void  add(int index, String s){
+    public void add(int index, String s){
 	if (indexInRange(index) == false){
 	    throw new IndexOutOfBoundsException();
 	}

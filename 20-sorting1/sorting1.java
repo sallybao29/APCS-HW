@@ -1,22 +1,30 @@
 import java.lang.*;
 
-public class Sarray {
-    String[] data;
-    int last;
-    int room = 100;
+public class sorting1 {
+    private String[] data;
+    private int last;
+    private int room = 100;
 
-    public Sarray() {
+    public sorting1() {
 	data = new String[100];
 	last = -1;
     }
 
-    public Sarray(int size, String s){
+    public sorting1(int size, String s){
 	data = new String[size];
 	last = -1;
 	for(int i = 0;i < size;i++){
 	    data[i] = s;
 	    last++;
 	}
+    }
+
+    public String[] getData(){
+	return data;
+    } 
+
+    public int getLast(){
+	return last;
     }
 
     public String[] grow(String[] nums){
@@ -53,7 +61,7 @@ public class Sarray {
 	return true;
     }
 
-    private void  add(int index, String s){
+    public void add(int index, String s){
 	if (indexInRange(index) == false){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -109,27 +117,28 @@ public class Sarray {
 	return old;
     }
 
-    public void insert(String newValue, int index){
-	for(int i = last;i > 0 && newvalue < a[i-1] ; i--) {
-	    a[i] = a[i-1];    
+    public void insert(String s, int l){
+	int i;
+	for(i = l;i > 0 && s.compareTo(data[i - 1]) < 0;i--){
+	    data[i] = data[i-1];
 	}
-	a[i]=newvalue;
+	data[i] = s;
     }
 
-    public void sort(){
-	int l = 0;
-	for (int i = 0;i < last;i++){
-	    insert(data[i]
+    public void isort(){
+	for(int i = 0;i < last + 1;i++){
+	    insert(data[i], i);
 	}
     }
 
     public static void main(String[] args){
-	Sarray s = new Sarray();
-	Sarray m = new Sarray(5, "hello");
-	System.out.println(m);
+	sorting1 s = new sorting1(3, "cs");
 	System.out.println(s);
 	s.add("hello");
 	s.add("potatoes");
+	s.add("ninja");
+	s.add("bye");
+	s.isort();
 	System.out.println(s);
        
 
