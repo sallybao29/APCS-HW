@@ -125,19 +125,41 @@ public class sorting1 {
 	data[i] = s;
     }
 
+    public int find(int start){
+	int smallest = start;
+	for(int i = start;i <= last;i++){
+	    if (data[smallest].compareTo(data[i]) > 0){
+		smallest = i;
+	    }
+	}
+	return smallest;
+    }
+
     public void isort(){
-	for(int i = 0;i < last + 1;i++){
+	for(int i = 0;i <= last;i++){
 	    insert(data[i], i);
 	}
     }
 
+    public void ssort(){
+	for(int i = 0;i <= last;i++){
+	    int smallest = find(i);
+	    String holder = data[smallest];
+	    data[smallest] = data[i];
+	    data[i] = holder;
+	}
+    }
+
     public static void main(String[] args){
+
 	sorting1 s = new sorting1(3, "cs");
 	System.out.println(s);
 	s.add("hello");
 	s.add("potatoes");
 	s.add("ninja");
 	s.add("bye");
+	s.ssort();
+	System.out.println(s);
 	s.isort();
 	System.out.println(s);
        
