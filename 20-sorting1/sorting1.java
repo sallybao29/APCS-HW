@@ -150,19 +150,63 @@ public class sorting1 {
 	}
     }
 
-    public static void main(String[] args){
+    public void swap(){
+	for(int i = 0;i < last;i++){
+	    String current = data[i];
+	    String next = data[i + 1];
+	    if (current.compareTo(next) > 0){
+		data[i] = next;
+		data[i + 1] = current;
+	    }
+	}
+    }
 
-	sorting1 s = new sorting1(3, "cs");
-	System.out.println(s);
-	s.add("hello");
-	s.add("potatoes");
-	s.add("ninja");
-	s.add("bye");
-	s.ssort();
-	System.out.println(s);
-	s.isort();
-	System.out.println(s);
-       
+    public void bsort(){
+	for(int i = 0;i < last && find(i) != i;i++){
+		swap();
+	}
+    }
+
+
+
+    public static void main(String[] args){
+	int size = 20;
+	String s = "hello";
+	/*
+	if (args.length == 0){
+	    System.out.println("First argument must be i, s, or b");
+	    System.exit(0);
+	}
+	String choice = args[0];
+	if (args.length > 1){
+	    size = Integer.parseInt(args[1]);
+	}
+	if (args.length > 2){
+	    s = args[2];
+	}
+	*/
+	sorting1 n = new sorting1(size, s);
+	n.add("potato");
+	n.add("goodbye");
+	n.add("apples");
+	n.add("thesaurus");
+	/*
+	if (choice.equals("i")){
+	    n.isort();
+	    System.out.println("isort: " + n);
+	}
+	if (choice.equals("s")){
+	    n.ssort();
+	    System.out.println("ssort: " + n);
+	}
+	else{
+	    n.bsort();
+	    System.out.println("bsort: " + n);
+	}
+	*/
+	System.out.println(n);
+	  n.bsort();
+	  System.out.println(n);
 
     }
 
