@@ -162,17 +162,21 @@ public class sorting1 {
     }
 
     public void bsort(){
-	for(int i = 0;i < last && find(i) != i;i++){
+	int i = 0;
+	while(i < last){
+	    if (find(i) != i){
 		swap();
+	    }
+	    else{
+		i++;
+	    }
 	}
     }
 
-
-
     public static void main(String[] args){
-	int size = 20;
+	int size = 1000;
 	String s = "hello";
-	/*
+      
 	if (args.length == 0){
 	    System.out.println("First argument must be i, s, or b");
 	    System.exit(0);
@@ -184,13 +188,13 @@ public class sorting1 {
 	if (args.length > 2){
 	    s = args[2];
 	}
-	*/
+	
 	sorting1 n = new sorting1(size, s);
 	n.add("potato");
 	n.add("goodbye");
 	n.add("apples");
 	n.add("thesaurus");
-	/*
+	
 	if (choice.equals("i")){
 	    n.isort();
 	    System.out.println("isort: " + n);
@@ -203,10 +207,8 @@ public class sorting1 {
 	    n.bsort();
 	    System.out.println("bsort: " + n);
 	}
-	*/
+	
 	System.out.println(n);
-	  n.bsort();
-	  System.out.println(n);
 
     }
 
