@@ -197,19 +197,17 @@ public class sorting1 {
 	
 	if (choice.equals("i")){
 	    n.isort();
-	    System.out.println("isort: " + n);
+	    System.out.println("isort");
 	}
 	if (choice.equals("s")){
 	    n.ssort();
-	    System.out.println("ssort: " + n);
+	    System.out.println("ssort");
 	}
 	else{
 	    n.bsort();
-	    System.out.println("bsort: " + n);
+	    System.out.println("bsort");
 	}
 	
-	System.out.println(n);
-
     }
 
 }
