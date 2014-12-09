@@ -1,34 +1,36 @@
 import java.util.Random;
 
 public class Interval{
-    private double low, high;
-    Random r;
+    private int low, high;
+    private static Random r = new Random();
 
-    public Interval(double l, double h){
-	low = l;
+    public void setup(int l, int h){
 	high = h;
+	low = l;
+    }
+    
+    public Interval(int l, int h){
+	setup(l, h);
     }
 
     public Interval(){
-	r = new Random();
-	double l = r.nextDouble();
-	double h = r.nextDouble();
-	while (h <= l){
-	    h = r.nextDouble();
-	}
-	this(l, h);
+	int h = 1 + r.nextInt(100);
+	int l = r.nextInt(h);
+	setup(l, h);
     }
 
     public String toString(){
-	return "[ " + low + "," + high + " ]";
+	return "[" + low + "," + high + "]";
     }
 
 
     public static void main(String[] args){
 	Interval i = new Interval();
-	Interval s = new Interval(0.25, 1.00);
+	Interval s = new Interval(20, 30);
 	System.out.println(i);
 	System.out.println(s);
+
+      
     }
     
 }
