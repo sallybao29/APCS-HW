@@ -19,6 +19,15 @@ public class Interval{
 	setup(l, h);
     }
 
+    public int compareTo(Interval other){
+	if (this.low == other.low){
+	    return this.high - other.high;
+	}
+	else{
+	    return this.low - other.low;
+	}
+    }
+
     public String toString(){
 	return "[" + low + "," + high + "]";
     }
@@ -29,6 +38,8 @@ public class Interval{
 	Interval s = new Interval(20, 30);
 	System.out.println(i);
 	System.out.println(s);
+	System.out.println(i.compareTo(s));
+	System.out.println(s.compareTo(i));
 
       
     }
