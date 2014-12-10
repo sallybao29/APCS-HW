@@ -1,6 +1,7 @@
-import java.util.Random;
+import java.util.*;
+import java.io.*;
 
-public class Interval{
+public class Interval implements Comparable{
     private int low, high;
     private static Random r = new Random();
 
@@ -19,12 +20,13 @@ public class Interval{
 	setup(l, h);
     }
 
-    public int compareTo(Interval other){
-	if (this.low == other.low){
-	    return this.high - other.high;
+    public int compareTo(Object other){
+	Interval o = (Interval)other;
+	if (this.low == o.low){
+	    return this.high - o.high;
 	}
 	else{
-	    return this.low - other.low;
+	    return this.low - o.low;
 	}
     }
 
@@ -34,14 +36,14 @@ public class Interval{
 
 
     public static void main(String[] args){
-	Interval i = new Interval();
-	Interval s = new Interval(20, 30);
-	System.out.println(i);
-	System.out.println(s);
-	System.out.println(i.compareTo(s));
-	System.out.println(s.compareTo(i));
+	Interval[] ia = new Interval[10];
+	for (int j = 0;j < ia.length;j++){
+	    ia[j] = new Interval();
+	}
 
-      
+	System.out.println(Arrays.toString(ia));
+	Arrays.sort(ia);
+	System.out.println(Arrays.toString(ia));
     }
     
 }
