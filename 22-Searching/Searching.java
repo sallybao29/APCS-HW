@@ -55,9 +55,9 @@ public class Searching{
     }
 
     public Comparable rbsearch(Comparable item, int low, int high){
-	if (a.length == 1){
-	    if (a[0].equals(item)){
-		return a[0];
+	if (low >= high){
+	    if (a[low].equals(high)){
+		return a[low];
 	    }
 	    return null;
 	}
@@ -74,7 +74,7 @@ public class Searching{
     }
 
 
---------------------------- Main -------------------------------------
+    /*--------------------------- Main -------------------------------------*/
 
     public static void main(String[] args){
 	Searching s = new Searching(20);
