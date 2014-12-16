@@ -56,9 +56,6 @@ public class Searching{
 
     public Comparable rbsearch(Comparable item, int low, int high){
 	if (low >= high){
-	    if (a[low].equals(high)){
-		return a[low];
-	    }
 	    return null;
 	}
 	int mid = (low + high) / 2;
