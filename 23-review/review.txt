@@ -2,9 +2,9 @@ https://github.com/julianjay/APCS-Final-Project
 
 Review of SuperDuperDoku
 
-Sudoku.java:17-39: the two get methods can be simplified, either by factoring out a general method for both, or by using Arrays.deepToString(Object[] a)
+Sudoku.java:17-39: the two get methods can be simplified by factoring out a general method for both
 
 Sudoku.java:49: setting x equal to a.get(0) is extraneous, can just set x to a.remove(0) because remove returns the removed element
 
 Sudoku.java:199-207: What is the difference between submit and checker? Both return a boolean based on whether userboard equals board. 
-When checking for equality between 2d-arrays, you can use Arrays.deepEquals(Object[] a1, Oject[] a2)
+When checking for equality between 2d-arrays, you can use Arrays.deepEquals(Object[] a1, Oject[] a2), submit would not work because == cannot check for deep equality
