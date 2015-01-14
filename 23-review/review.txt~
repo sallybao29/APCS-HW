@@ -1,0 +1,7 @@
+https://github.com/julianjay/APCS-Final-Project
+
+Review of SuperDuperDoku
+
+Sudoku.java:17-39: the two get methods can be simplified, either by factoring out a general method for both, or by using Arrays.deepToString(Object[] a)
+
+Sudoku.java:49:
